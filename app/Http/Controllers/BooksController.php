@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
@@ -23,7 +24,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return('books.create');
+        return view('books.create');
     }
 
     /**
@@ -34,6 +35,17 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
+        $validData = $request->validate(
+            [
+                'title' =>'required',
+                'author' =>'required',
+                'description' => 'required',
+                'price' =>'required'
+            ]
+            );
+
+            \DB::table('books')->insert($validData);
+
         return('books.store');
     }
 

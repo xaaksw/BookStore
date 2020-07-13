@@ -15,7 +15,7 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('name', 255);
+            $table->string('title', 255);
 
             $table->string('author', 255);
             $table->text('description');
