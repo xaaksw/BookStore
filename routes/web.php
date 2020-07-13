@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// RESTFUL CONTROLLER STANDRED //
+//  Verb         URI                        Action               RouteName
+//  GET             /photos                 index               photos.index
+//  GET             /photos/create	        create	            photos.create
+//  POST    	    /photos	                store	            photos.store
+//  GET     	    /photos/{photo}	        show	            photos.show
+//  GET     	    /photos/{photo}/edit    edit                photos.edit
+//  PUT/PATCH	    /photos/{photo}	        update              photos.update
+//  DELETE   	    /photos/{photo}	        destroy	            photos.destroy
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,3 +30,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/books', 'BooksController@index')->name('books.index');
+Route::get('/books/create', 'BooksController@create')->name('books.create');
+Route::post('/books', 'BooksController@store')->name('books.store');
+Route::get('/books/{book}', 'BooksController@show')->name('books.show');
+Route::get('/books/{book}/edit', 'BooksController@edit')->name('books.edit');
+Route::get('/books/{book}', 'BooksController@update')->name('books.update');//PUT,PATCH
+Route::get('/books/{book}', 'BooksController@destroy')->name('books.destroy');//Delete
+
+
+
+
+
+
+
+
+
