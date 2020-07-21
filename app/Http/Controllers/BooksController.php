@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Book; 
 
 class BooksController extends Controller
 {
@@ -14,7 +15,10 @@ class BooksController extends Controller
      */
     public function index()
     {
-        return('books.index');
+        $books = Book::all();
+
+
+        return view('books.index' , ['books' => $books]);
     }
 
     /**
@@ -43,10 +47,10 @@ class BooksController extends Controller
                 'price' =>'required'
             ]
             );
+            Book::create($validData);
+           // \DB::table('books')->insert($validData);
 
-            \DB::table('books')->insert($validData);
-
-        return('books.store');
+         return redirect('/books');
     }
 
     /**
