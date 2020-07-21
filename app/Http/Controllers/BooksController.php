@@ -16,6 +16,8 @@ class BooksController extends Controller
     public function index()
     {
         $books = Book::all();
+        //$book = Book::where('title', 'testawy')->first();
+        //dd($book);
 
 
         return view('books.index' , ['books' => $books]);
@@ -47,10 +49,16 @@ class BooksController extends Controller
                 'price' =>'required'
             ]
             );
-            Book::create($validData);
+            if(Book::where('title', $request->title)->first()){
+                $book = Book::where('title', $request->title)->first();
+            }else{
+                $book = Book::create($validData);  
+            }
+            $book->numOfProduct++;
+            $book->save();
            // \DB::table('books')->insert($validData);
 
-         return redirect('/books');
+        return redirect('/books');
     }
 
     /**

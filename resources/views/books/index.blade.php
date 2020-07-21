@@ -22,7 +22,7 @@
           <td>{{$book->author}}</td>
           <td>{{$book->description}}</td>
           <td>{{$book->price}}</td>
-          <td>{{$book->numberOfProduct}}</td>
+          <td>{{$book->numOfProduct}}</td>
           <td><a href="/books/{{$book->id}}/edit">Edit</a></td>
           </tr>     
     @endforeach
