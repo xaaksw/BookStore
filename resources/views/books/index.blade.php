@@ -11,6 +11,7 @@
             <th>Description</th>
             <th>price</th>
             <th>numberOfProduct</th>
+              <th>cover</th>
             <th>Edit</th>
             <th>DElETE</th>
           </tr>
@@ -23,9 +24,14 @@
           <td>{{$book->description}}</td>
           <td>{{$book->price}}</td>
           <td>{{$book->numOfProduct}}</td>
+
+           @if($book->cover)
+               <td> <img class="img-thumbnail"  src="{{asset('storage/'.$book->cover)}}"> </td>
+            @endif
+
           <td><a href="/books/{{$book->id}}/edit">Edit</a></td>
-          </tr>     
+          </tr>
     @endforeach
     </tbody>
-    </table>   
+    </table>
 @endsection

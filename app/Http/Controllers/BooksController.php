@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Book; 
+use App\Book;
 
 class BooksController extends Controller
 {
@@ -41,21 +41,18 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        $validData = $request->validate(
-            [
-                'title' =>'required',
-                'author' =>'required',
-                'description' => 'required',
-                'price' =>'required'
-            ]
-            );
+        $validData = $this->validData();
+
             if(Book::where('title', $request->title)->first()){
                 $book = Book::where('title', $request->title)->first();
             }else{
-                $book = Book::create($validData);  
+                $book = Book::create($validData);
             }
             $book->numOfProduct++;
             $book->save();
+            $this->storeCover($book);
+
+
            // \DB::table('books')->insert($validData);
 
         return redirect('/books');
@@ -104,5 +101,38 @@ class BooksController extends Controller
     public function destroy($id)
     {
         return('books.destroy');
+    }
+
+    private function validData(){
+
+        return tap(
+            request()->validate(
+            [
+                'title' =>'required',
+                'author' =>'required',
+                'description' => 'required',
+                'price' =>'required'
+            ]),
+            function (){
+                if (request()->hasFile('cover')){
+                    request()->validate(
+                        [
+                            'cover' => 'File|Image',
+                        ]
+                    );}}
+        );
+
+
+
+
+    }
+
+    private function storeCover($book)
+    {
+        if (\request()->has('cover')){
+            $book-> update([
+                'cover' => request()->cover->store('uploads','public')
+            ]);
+        }
     }
 }

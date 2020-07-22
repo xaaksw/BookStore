@@ -13,7 +13,7 @@
      </div>
     @endif
 
-    <form action="/books" method="POST">
+    <form action="/books" method="POST" enctype="multipart/form-data">
         @csrf
         <h2 class="p-2">Add Book to the system "ADMIN" </h2>
         <div class=" row form-group">
@@ -36,12 +36,20 @@
             <input class="col-8 form-control" type="number" class="form-control" id="price" name="price" >
         </div>
 
+        <div class=" row form-group">
+            <label class="col-4 " for="cover">Book Cover</label>
+            <input class="col-8 form-control" type="file" class="form-control" id="cover" name="cover" >
+        </div>
+
+
+
+
         <div class="row">
             <button class="btn  btn-dark btn-block" type="submit">Add Book</button>
         </div>
-        
 
-        
+
+
     </form>
 </div>
 @endsection
