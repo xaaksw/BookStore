@@ -1,0 +1,99 @@
+play-flex, .form {
+  display: flex;
+  display: -webkit-flex; }
+
+*
+{
+	margin: 0px;
+	padding: 0px;
+}
+body
+{
+	background-image:url(../Images/background.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	 font-family: Poppins;
+}
+
+#pro
+{
+	margin-top: 120px;
+	box-shadow: -1px 1px 50px 10px black;
+	border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+	background-color:#000000;
+	opacity: 98%;
+	font-family: Poppins;
+
+}
+h2 {
+ line-height: 1.8 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: bold !important;
+  color: #fff !important;
+  font-family: Poppins !important;
+  font-size: 30px !important;
+  text-align: center !important;
+  margin-bottom: 28px !important;
+   }
+.label
+{
+	font-size: 24px;
+	color: white;
+	font-weight: normal;
+}
+.form-control
+{
+	background: transparent !important;
+	border-radius: 0px !important;
+	border:0px!important;
+	border-bottom:1px solid #D9486E !important;
+	margin-bottom: 30px !important;
+	font-size: 15px!important;
+	color: white !important;
+	padding:5px !important;
+}
+input[type="checkbox"]
+{
+	height: 15px;
+	width: 15px;
+}
+small
+{
+	font-size: 19px;
+	color: white;
+}
+
+
+.btn-info
+{
+	background:#D9486E !important;
+	border: 2px solid #D9486E!important;
+	border-radius: 0px !important;
+	width: 260px !important;
+	margin-top: 20px !important;
+	font-size: 20px !important;
+	background: transparent !important;
+
+}
+.btn-info:hover
+{
+ background:#D9486E;
+ border: 2px solid #D9486E;
+
+}
+
+img
+{
+   width: 500px;
+   height: 560px;
+   border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+}
