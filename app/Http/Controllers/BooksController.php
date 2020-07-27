@@ -41,9 +41,7 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        $validData = $request->validate(
-            [
-                'title' =>'required',
+        
         $validData = $this->validData();
 
         if(Book::where('title', $request->title)->first()){
