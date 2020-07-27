@@ -22,7 +22,7 @@ class CreateBooksTable extends Migration
 
             $table->double('price');
             $table->integer('numOfProduct')->default(0);
-            $table->string('cover')->nullable();
+
             $table->timestamps();
         });
     }

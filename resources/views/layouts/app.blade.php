@@ -20,7 +20,11 @@
     <!--bootstrap main style-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    
+    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
