@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use Illuminate\Support\Facades\Storage;
+
 
 class BooksController extends Controller
 {
@@ -41,7 +43,7 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $validData = $this->validData();
 
         if(Book::where('title', $request->title)->first()){
@@ -78,7 +80,8 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        return('books.edit');
+        $book = Book::findOrFail($id);
+        return view('books.edit', ['book'=>$book]);
     }
 
     /**
@@ -90,7 +93,12 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return('books.update');
+        $validData = $this->validData();
+        $book = Book::where('id', $id)->update($validData);
+
+        //updating image need to e fixed !!
+
+        return redirect('/books');
     }
 
     /**
@@ -101,7 +109,11 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        return('books.destroy');
+        $book = Book::find($id);
+        Storage::delete("public/".$book->cover);
+        Book::destroy($id);
+
+        return redirect('/books');
     }
 
     private function validData(){
@@ -130,7 +142,7 @@ class BooksController extends Controller
 
     private function storeCover($book)
     {
-        if (\request()->has('cover')){
+        if (request()->has('cover')){
             $book-> update([
                 'cover' => request()->cover->store('uploads','public')
             ]);

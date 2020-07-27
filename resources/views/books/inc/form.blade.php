@@ -12,20 +12,20 @@
             </div>
 
              <label class="label control-label">Book Title</label>
-             <input type="text" class= "form-control" name=" title" id="title" placeholder="Title">
+             <input type="text" class= "form-control" name=" title" id="title" placeholder="Title" value="{{$book->title ?? ''}}">
 
              <label class="label control-label">Author</label>
-             <input type="text" class= "form-control" name=" author" id="author" placeholder="Author">
+             <input type="text" class= "form-control" name=" author" id="author" placeholder="Author" value="{{$book->author ?? ''}}">
 
             <label class="label control-label">Book Description</label>
-            <input type="text" class= "form-control" name="description" id="description" placeholder="Description">
+            <input type="text" class= "form-control" name="description" id="description" placeholder="Description" value="{{$book->description ??''}}">
 
             <label class="label control-label">Book Price</label>
-            <input type="number" class= "form-control" id="price" name="price" placeholder="Price">
+            <input type="number" class= "form-control" id="price" name="price" placeholder="Price" value="{{$book->price ?? ''}}">
 
             <label class="label control-label">Book Cover</label>
-            <span class="btn btn-primary btn-file">choose file <input type="file" class="form-control" id="cover" name="cover">
-            </span>    
+            <span class="btn btn-primary btn-file">choose file <input type="file" class="form-control" id="cover" name="cover" value="{{$book->cover ?? ''}}">
+            </span>
          <br>
          <br>
         <div class="row">
@@ -36,4 +36,4 @@
       </div>
     </div>
 
- 
+

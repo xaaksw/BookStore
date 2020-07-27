@@ -29,6 +29,10 @@
               @endif
 
               <td><a href="/books/{{$book->id}}/edit">Edit</a></td>
+              <td><form action="/books/{{$book->id}}" method="POST">
+                      @csrf @method('DELETE')
+                      <button class="btn btn-danger" type="submit">DElete</button>
+                  </form></td>
           </tr>
     @endforeach
     </tbody>
