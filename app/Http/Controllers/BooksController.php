@@ -94,9 +94,15 @@ class BooksController extends Controller
     public function update(Request $request, $id)
     {
         $validData = $this->validData();
-        $book = Book::where('id', $id)->update($validData);
+        //$book = Book::where('id', $id)->update($validData);
+        $book = Book::findOrFail($id);
+        $book->update($validData);
 
-        //updating image need to e fixed !!
+        if(request()->has('cover')){
+            Storage::delete("public/".$book->cover);
+        }
+        $this->storeCover($book);
+        
 
         return redirect('/books');
     }
