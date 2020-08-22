@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+
 
 
 use Illuminate\Http\Request;
@@ -15,8 +17,21 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        //if(Auth::user()->isAdmin() == 0){
+            //return "you are a user ";
+        //}
+    }
     public function index()
     {
+        $user = Auth::user();
+        // for some reason when I tried to make it seperated function the redirect is not working !! 
+        if(Auth::user()->isAdmin == 0 )return redirect('/');
         $books = Book::all();
         //$book = Book::where('title', 'testawy')->first();
         //dd($book);
@@ -32,6 +47,7 @@ class BooksController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->isAdmin == 0 )return redirect('/');
         return view('books.create');
     }
 
@@ -43,7 +59,7 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-
+        if(Auth::user()->isAdmin == 0 )return redirect('/');
         $validData = $this->validData();
 
         if(Book::where('title', $request->title)->first()){
@@ -69,6 +85,7 @@ class BooksController extends Controller
      */
     public function show($id)
     {
+        if(Auth::user()->isAdmin == 0 )return redirect('/');
         return('books.show');
     }
 
@@ -80,6 +97,7 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->isAdmin == 0 )return redirect('/');
         $book = Book::findOrFail($id);
         return view('books.edit', ['book'=>$book]);
     }
@@ -93,6 +111,7 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(Auth::user()->isAdmin == 0 )return redirect('/');
         $validData = $this->validData();
         //$book = Book::where('id', $id)->update($validData);
         $book = Book::findOrFail($id);
@@ -115,6 +134,7 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
+        if(Auth::user()->isAdmin == 0 )return redirect('/');
         $book = Book::find($id);
         Storage::delete("public/".$book->cover);
         Book::destroy($id);
@@ -154,4 +174,6 @@ class BooksController extends Controller
             ]);
         }
     }
+
+    
 }
