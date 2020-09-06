@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
 
             $table->string('author', 255);
             $table->text('description');
+            $table->string('cover')->nullable();
 
             $table->double('price');
             $table->integer('numOfProduct')->default(0);
