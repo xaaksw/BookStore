@@ -14,6 +14,7 @@
               <th>cover</th>
             <th>Edit</th>
             <th>DElETE</th>
+            <th><a href="/books/create">create book</a></th>
           </tr>
         </thead>
         <tbody>
